@@ -1,12 +1,13 @@
 require("dotenv").config();
 
 const express = require("express");
+const mongoose = require("mongoose");
 const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
 // port
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 // middlewares
 app.use(express.json());
@@ -23,7 +24,19 @@ app.get("/", (req, res) => {
 // BYPASS API
 app.use("/api/products", productRoutes);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+//
+
+// mongodb
+mongoose.set("strictQuery", false);
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    // listen to server
+    app.listen(port, () => {
+      console.log(`connected to mongo and listening on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
