@@ -19,12 +19,12 @@ router.post("/", (req, res) => {
 });
 
 // DELETE a product
-router.delete("/", (req, res) => {
+router.delete("/:id", (req, res) => {
   res.json({ message: "DELETE a product" });
 });
 
 // UPDATE a product
-router.patch("/", (req, res) => {
+router.patch("/:id", (req, res) => {
   res.json({ message: "UPDATE a product" });
 });
 module.exports = router;
