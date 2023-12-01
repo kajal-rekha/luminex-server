@@ -49,7 +49,7 @@ const getAllUsers = async (req, res) => {
 };
 
 // Get a user
-const getAUser = async (req, res) => {
+const getAnUser = async (req, res) => {
   try {
     const { userId } = req.params;
 
@@ -65,7 +65,7 @@ const getAUser = async (req, res) => {
   }
 };
 
-// Update user by ID
+// Update user 
 const updateUser = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -88,7 +88,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-// Delete user by ID
+// Delete user 
 const deleteUser = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -109,7 +109,7 @@ module.exports = {
   loginUser,
   createUser,
   getAllUsers,
-  getAUser,
+  getAnUser,
   updateUser,
   deleteUser,
 };

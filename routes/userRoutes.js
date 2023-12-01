@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { loginUser, createUser, getAllUsers, updateUser, deleteUser, getAUser } = require("../controllers/userController");
+const { loginUser, createUser, getAllUsers, updateUser, deleteUser, getAnUser } = require("../controllers/userController");
 const { isAdmin } = require("../middlewares/admin");
 const { isAuthenticated } = require("../middlewares/auth");
 
@@ -16,14 +16,14 @@ router.post("/auth/login", loginUser);
 // get all users
 router.get("/", isAuthenticated, isAdmin, getAllUsers);
 
-// Get a user 
-router.get("/:userId", isAuthenticated, isAdmin, getAUser);
+// Get an user 
+router.get("/:userId", isAuthenticated, isAdmin, getAnUser);
 
 
-// Update a user 
+// Update an user 
 router.put("/:userId", isAuthenticated, isAdmin, updateUser);
 
-// Delete a user 
+// Delete an user 
 router.delete("/:userId", isAuthenticated, isAdmin, deleteUser);
 
 module.exports = router;
