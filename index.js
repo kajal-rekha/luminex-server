@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
-
+const orderRoutes = require("./routes/orderRoutes");
 // express app
 const app = express();
 
@@ -31,6 +31,8 @@ app.get("/", (req, res) => {
 // BYPASS API
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
+
 
 // mongodb
 mongoose.set("strictQuery", false);
