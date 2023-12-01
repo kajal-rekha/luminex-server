@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 
 // BYPASS API
 app.use("/api/products", productRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/users", userRoutes);
 
 // mongodb
 mongoose.set("strictQuery", false);
