@@ -47,4 +47,41 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+// signup
+userSchema.statics.signup = async function (
+  name,
+  email,
+  password,
+  image,
+  address,
+  occupation
+) {
+  if (!name || !email || !password || !image || !address || !occupation) {
+    throw new Error("All fields must be filled");
+  }
+
+  if (!validator.isEmail(email)) {
+    throw new Error("Invalied email");
+  }
+
+  if (!validator.isStrongPassword(password)) {
+    throw new Error(
+      "Password is not strong (must contain 8+ chars, uppercase, lowercase, number and symbol"
+    );
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hashPass = await bcrypt.hash(password, salt);
+  const user = await this.create({
+    name,
+    email,
+    password: hashPass,
+    image,
+    address,
+    occupation,
+  });
+
+  return user;
+};
+
 module.exports = mongoose.model("User", userSchema);
