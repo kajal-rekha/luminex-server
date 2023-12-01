@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 
-
 // express app
 const app = express();
 
@@ -13,7 +12,11 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 // middlewares
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -22,7 +25,7 @@ app.use((req, res, next) => {
 
 // test api
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the luminex server!" });
+  res.status(200).json({ message: "Welcome to the luminex server!" });
 });
 
 // BYPASS API
@@ -33,7 +36,7 @@ app.use("/api/user", userRoutes);
 mongoose.set("strictQuery", false);
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, { useUnifiedTopology: true })
   .then(() => {
     // listen to server
     app.listen(port, () => {
