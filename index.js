@@ -33,12 +33,11 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 
-
 // mongodb
 mongoose.set("strictQuery", false);
 
 mongoose
-  .connect(process.env.MONGO_URI, { useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI)
   .then(() => {
     // listen to server
     app.listen(port, () => {
