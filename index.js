@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const stripeRoutes = require("./routes/stripeRoutes");
+
 // express app
 const app = express();
 
@@ -32,7 +34,7 @@ app.get("/", (req, res) => {
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
-
+app.use("/api/stripe", stripeRoutes);
 // mongodb
 mongoose.set("strictQuery", false);
 
