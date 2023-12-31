@@ -6,6 +6,8 @@ const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const stripeRoutes = require("./routes/stripeRoutes");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
 
 // express app
 const app = express();
