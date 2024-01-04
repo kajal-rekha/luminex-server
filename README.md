@@ -33,7 +33,7 @@ Embark on a special journey with Luminex Server, where individuality blossoms in
  
 2. Install dependencies:Install the required dependencies by running `npm install` or `npm i`.
 
-3. Create a .env file in the root directory and add the following variables:
+3. Create a `.env` file in the root directory and add the following variables:
    ` MONGO_URI `
     ` JWT_SECRET `
 Start the application by running `npm run dev`.
