@@ -4,7 +4,7 @@ Welcome to Luminex Server, an online jewelry shop project.
 
 ## Project Description
 
-Luminex Server aims to provide users with a seamless and secure platform for exploring and purchasing exquisite jewelry. The project is built using Node.js and Express.js, ensuring a robust backend to handle various functionalities. It incorporates features like user authentication, product browsing, secure payment processing, order tracking, and a personalized user dashboard.
+Embark on a special journey with Luminex Server, where individuality blossoms in beauty. Explore carefully curated collections, effortlessly add unique items to your cart for a day, and indulge in transactions secured with advanced encryption. Personalized recommendations redefine your style. 
 
 ## Project Features
 
@@ -30,10 +30,12 @@ Luminex Server aims to provide users with a seamless and secure platform for exp
 ## Installation
 
 1. Clone the repository:git clone https://github.com/kajal-rekha/luminex-server.git
+ 
 2. Install dependencies:Install the required dependencies by running npm install or npm i.
+
 3. Create a .env file in the root directory and add the following variables:
-    MONGO_URI
-    JWT_SECRET
+   ` MONGO_URI `
+    ` JWT_SECRET `
 Start the application by running npm run dev.
 
 ## Conclusion
