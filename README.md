@@ -31,12 +31,12 @@ Embark on a special journey with Luminex Server, where individuality blossoms in
 
 1. Clone the repository:git clone https://github.com/kajal-rekha/luminex-server.git
  
-2. Install dependencies:Install the required dependencies by running npm install or npm i.
+2. Install dependencies:Install the required dependencies by running `npm install` or `npm i`.
 
 3. Create a .env file in the root directory and add the following variables:
    ` MONGO_URI `
     ` JWT_SECRET `
-Start the application by running npm run dev.
+Start the application by running `npm run dev`.
 
 ## Conclusion
 Thank you for exploring Luminex Server! We hope this platform adds a touch of elegance to your jewelry shopping experience. Your feedback and contributions are highly appreciated as we continue to enhance and refine the project.
