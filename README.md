@@ -29,7 +29,7 @@ Embark on a special journey with Luminex Server, where individuality blossoms in
 
 ## Installation
 
-1. Clone the repository:git clone https://github.com/kajal-rekha/luminex-server.git
+1. Clone the repository: git clone https://github.com/kajal-rekha/luminex-server.git
  
 2. Install dependencies:Install the required dependencies by running `npm install` or `npm i`.
 
