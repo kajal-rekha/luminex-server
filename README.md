@@ -1,6 +1,6 @@
 # Luminex Server
 
-Welcome to Luminex Server, an online jewelry shop project.
+Welcome to Luminex, your go-to destination for exquisite jewelry! Dive into the world of Luminex and explore our stunning collection of jewelry pieces.
 
 ## Project Description
 
