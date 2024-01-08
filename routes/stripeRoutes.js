@@ -1,15 +1,14 @@
 const express = require("express");
-
+const cors = require("cors");
 const Stripe = require("stripe");
 
-// require("dotenv").config();
+require("dotenv").config();
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const router = express.Router();
 
-
-router.post("/create-checkout-session", async (req, res) => {
+router.post("/create-checkout-session", cors(), async (req, res) => {
   if (!req.body.cartItems || !Array.isArray(req.body.cartItems)) {
     return res.status(400).json({ error: "Invalid cartItems data" });
   }
