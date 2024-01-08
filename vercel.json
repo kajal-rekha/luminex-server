@@ -10,6 +10,11 @@
     {
       "src": "/(.*)",
       "dest": "/"
+    },
+    {
+      "src": "/api/stripe/(.*)",
+      "methods": ["POST"],
+      "allow": ["http://localhost:3000"]
     }
   ]
 }
