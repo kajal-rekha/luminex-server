@@ -1,19 +1,33 @@
 const express = require("express");
 const cors = require("cors");
 const Stripe = require("stripe");
-
+//const Auth = require("../middlewares/auth");
 require("dotenv").config();
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
+const successURL =
+  process.env.CLIENT_SUCCESS_URL === "https://luminex-lux.vercel.app"
+    ? "https://luminex-lux.vercel.app"
+    : "http://localhost:3000/checkout-success";
+const cancelURL =
+  process.env.CLIENT_CANCEL_URL === "https://luminex-lux.vercel.app"
+    ? "https://luminex-lux.vercel.app"
+    : "http://localhost:3000/cart";
+
 const router = express.Router();
 
 router.post("/create-checkout-session", cors(), async (req, res) => {
-  if (!req.body.cartItems || !Array.isArray(req.body.cartItems)) {
-    return res.status(400).json({ error: "Invalid cartItems data" });
+  //res.json({ message: "hello" });
+  const { data } = req.body;
+  console.log(req.body.data);
+  if (!req.body.data || !Array.isArray(req.body.data)) {
+    res.status(400).json({ error: "Invalid cartItems data" });
+    return;
   }
 
-  const line_items = req.body.cartItems.map((item) => {
+  console.log(req.body.userId);
+  const line_items = req.body.data.map((item) => {
     return {
       price_data: {
         currency: "usd",
@@ -32,64 +46,22 @@ router.post("/create-checkout-session", cors(), async (req, res) => {
   });
 
   console.log(line_items);
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    shipping_address_collections: {
-      allowed_countries: ["US", "CA", "BD"],
-    },
-    shipping_options: [
-      {
-        shipping_rate_data: {
-          type: "fixed_amount",
-          fixed_amount: {
-            amount: 0,
-            currency: "usd",
-          },
-          display_name: "Free shipping",
-          delivery_estimate: {
-            minimum: {
-              unit: "business_day",
-              value: 5,
-            },
-            maximum: {
-              unit: "business_day",
-              value: 7,
-            },
-          },
-        },
-      },
-      {
-        shipping_rate_data: {
-          type: "fixed_amount",
-          fixed_amount: {
-            amount: 1500,
-            currency: "usd",
-          },
-          display_name: "Next day air",
-          delivery_estimate: {
-            minimum: {
-              unit: "business_day",
-              value: 1,
-            },
-            maximum: {
-              unit: "business_day",
-              value: 1,
-            },
-          },
-        },
-      },
-    ],
-    phone_number_collections: {
-      enabled: true,
-    },
-    line_items,
-    mode: "payment",
-    success_url: "http://localhost:3000/checkout-success",
-    cancel_url: "http://localhost:3000/cart",
-  });
 
-  console.log("Stripe Session:", session);
-  res.send({ url: session.url });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items,
+      mode: "payment",
+      success_url: successURL,
+      cancel_url: cancelURL,
+    });
+
+    console.log("Stripe Session:", session);
+    res.send({ url: session.url });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 module.exports = router;
