@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema(
   {
+    line_items: Object,
     customerName: {
       type: String,
       required: true,
