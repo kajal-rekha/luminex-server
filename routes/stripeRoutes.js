@@ -8,11 +8,11 @@ require("dotenv").config();
 const successURL =
   process.env.CLIENT_SUCCESS_URL === "https://luminex-lux.vercel.app"
     ? "https://luminex-lux.vercel.app"
-    : "http://localhost:3000/checkout-success";
+    : "https://luminex-lux.vercel.app/checkout-success";
 const cancelURL =
-  process.env.CLIENT_CANCEL_URL === "https://luminex-lux.vercel.app"
-    ? "https://luminex-lux.vercel.app"
-    : "http://localhost:3000/cart";
+    process.env.CLIENT_CANCEL_URL === "https://luminex-lux.vercel.app"
+        ? "https://luminex-lux.vercel.app"
+        : "https://luminex-lux.vercel.app/cart";
 
 const router = express.Router();
 
