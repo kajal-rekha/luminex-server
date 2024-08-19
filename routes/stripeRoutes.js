@@ -73,7 +73,7 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 router.post(
     "/webhook",
     express.raw({ type: "application/json" }),
-    (req, res) => {
+    async (req, res) => {
         const sig = req.headers["stripe-signature"];
 
         let event;
@@ -95,8 +95,11 @@ router.post(
         switch (event.type) {
             case "checkout.session.completed":
                 const session = event.data.object;
-                console.log(`Payment for session ${session.id} succeeded.`);
 
+                const savedOrder = await createOrderFromSession(session);
+
+                const orderId = savedOrder._id;
+                res.redirect(303, `/order?orderId=${orderId}`);
                 break;
 
             default:
